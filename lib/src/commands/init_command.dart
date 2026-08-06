@@ -1,6 +1,7 @@
 import 'package:args/command_runner.dart';
 import '../generators/folder_generator.dart';
 import '../generators/template_generator.dart';
+import 'dart:io';
 
 class InitCommand extends Command {
   @override
@@ -11,6 +12,11 @@ class InitCommand extends Command {
 
   @override
   void run() {
+    print('🚀 Entering Interactive Wizard...');
+    stdout.write('👉 Which HTTP client do you prefer? (1: http, 2: dio) [1]: ');
+    final httpChoice = stdin.readLineSync();
+    final useDio = httpChoice == '2';
+
     print('Initializing Clean Architecture...');
 
     final coreDirs = [

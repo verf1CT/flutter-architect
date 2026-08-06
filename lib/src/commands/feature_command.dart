@@ -2,6 +2,8 @@ import 'package:args/command_runner.dart';
 import '../generators/folder_generator.dart';
 import '../generators/template_generator.dart';
 
+import 'dart:io';
+
 class FeatureCommand extends Command {
   @override
   final name = 'feature';
@@ -13,8 +15,7 @@ class FeatureCommand extends Command {
     argParser.addOption(
       'name',
       abbr: 'n',
-      help: 'The name of the feature.',
-      mandatory: true,
+      help: 'The name of the feature (if omitted, interactive mode starts).',
     );
     argParser.addOption(
       'state',
@@ -27,12 +28,24 @@ class FeatureCommand extends Command {
 
   @override
   void run() {
-    final featureName = argResults?['name'] as String?;
-    final state = argResults?['state'] as String;
-
+    String? featureName = argResults?['name'] as String?;
+    String state = argResults?['state'] as String? ?? 'bloc';
+    
     if (featureName == null || featureName.isEmpty) {
-      print('❌ Feature name is required. Use --name or -n.');
-      return;
+      print('🚀 Entering Interactive Wizard...');
+      stdout.write('👉 Enter feature name: ');
+      featureName = stdin.readLineSync();
+      
+      if (featureName == null || featureName.isEmpty) {
+        print('❌ Feature name cannot be empty.');
+        return;
+      }
+      
+      stdout.write('👉 Choose state manager (1: bloc, 2: riverpod, 3: getx) [1]: ');
+      final stateChoice = stdin.readLineSync();
+      if (stateChoice == '2') state = 'riverpod';
+      else if (stateChoice == '3') state = 'getx';
+      else state = 'bloc';
     }
 
     print('Scaffolding feature: $featureName with $state...');
