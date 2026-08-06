@@ -19,6 +19,7 @@ class InitCommand extends Command {
       'lib/core/network',
       'lib/core/usecases',
       'lib/core/utils',
+      'lib/core/theme',
       'lib/features',
     ];
 
@@ -32,6 +33,11 @@ class InitCommand extends Command {
     TemplateGenerator.createFile(
       'lib/injection_container.dart',
       TemplateGenerator.getInjectionContainerTemplate(),
+    );
+
+    TemplateGenerator.createFile(
+      'lib/core/theme/app_theme.dart',
+      TemplateGenerator.getThemeTemplate(),
     );
 
     print('🎉 Done! Clean Architecture scaffold ready.');

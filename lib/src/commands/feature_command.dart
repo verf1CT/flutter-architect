@@ -1,5 +1,6 @@
 import 'package:args/command_runner.dart';
 import '../generators/folder_generator.dart';
+import '../generators/template_generator.dart';
 
 class FeatureCommand extends Command {
   @override
@@ -41,6 +42,20 @@ class FeatureCommand extends Command {
 
     FolderGenerator.createDirs(featureDirs);
 
-    print('🎉 Feature \'$featureName\' scaffolded!');
+    final blocPath = 'lib/features/$featureName/presentation/bloc';
+    TemplateGenerator.createFile(
+      '$blocPath/${featureName}_event.dart',
+      TemplateGenerator.getBlocEventTemplate(featureName),
+    );
+    TemplateGenerator.createFile(
+      '$blocPath/${featureName}_state.dart',
+      TemplateGenerator.getBlocStateTemplate(featureName),
+    );
+    TemplateGenerator.createFile(
+      '$blocPath/${featureName}_bloc.dart',
+      TemplateGenerator.getBlocTemplate(featureName),
+    );
+
+    print('🎉 Feature \'$featureName\' scaffolded with BLoC!');
   }
 }

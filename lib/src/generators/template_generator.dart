@@ -33,4 +33,62 @@ Future<void> init() async {
 }
 ''';
   }
+
+  static String getThemeTemplate() {
+    return '''
+import 'package:flutter/material.dart';
+
+class AppTheme {
+  static ThemeData get lightTheme {
+    return ThemeData(
+      primarySwatch: Colors.blue,
+      visualDensity: VisualDensity.adaptivePlatformDensity,
+    );
+  }
+}
+''';
+  }
+
+  static String getBlocEventTemplate(String featureName) {
+    final pascalCase = featureName[0].toUpperCase() + featureName.substring(1);
+    return '''
+abstract class ${pascalCase}Event {}
+
+class Get${pascalCase}Event extends ${pascalCase}Event {}
+''';
+  }
+
+  static String getBlocStateTemplate(String featureName) {
+    final pascalCase = featureName[0].toUpperCase() + featureName.substring(1);
+    return '''
+abstract class ${pascalCase}State {}
+
+class ${pascalCase}Initial extends ${pascalCase}State {}
+class ${pascalCase}Loading extends ${pascalCase}State {}
+class ${pascalCase}Loaded extends ${pascalCase}State {}
+class ${pascalCase}Error extends ${pascalCase}State {
+  final String message;
+  ${pascalCase}Error(this.message);
+}
+''';
+  }
+
+  static String getBlocTemplate(String featureName) {
+    final pascalCase = featureName[0].toUpperCase() + featureName.substring(1);
+    return '''
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '${featureName}_event.dart';
+import '${featureName}_state.dart';
+
+class ${pascalCase}Bloc extends Bloc<${pascalCase}Event, ${pascalCase}State> {
+  ${pascalCase}Bloc() : super(${pascalCase}Initial()) {
+    on<Get${pascalCase}Event>((event, emit) async {
+      emit(${pascalCase}Loading());
+      // TODO: implement logic
+      emit(${pascalCase}Loaded());
+    });
+  }
+}
+''';
+  }
 }
