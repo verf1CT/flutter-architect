@@ -1,15 +1,17 @@
 import 'package:args/command_runner.dart';
 import 'package:clean_architect_cli/src/commands/init_command.dart';
 import 'package:clean_architect_cli/src/commands/feature_command.dart';
+import 'package:clean_architect_cli/src/commands/backend_command.dart';
 import 'dart:io';
 
 void main(List<String> arguments) {
   final runner = CommandRunner(
-    'flutter-architect',
-    'A CLI tool for scaffolding Clean Architecture in Flutter projects.',
+    'clean_architect_cli',
+    'A blazingly fast CLI tool for scaffolding Clean Architecture.',
   )
     ..addCommand(InitCommand())
-    ..addCommand(FeatureCommand());
+    ..addCommand(FeatureCommand())
+    ..addCommand(BackendCommand());
 
   runner.run(arguments).catchError((error) {
     if (error is! UsageException) throw error;

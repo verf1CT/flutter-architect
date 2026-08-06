@@ -30,22 +30,26 @@ class FeatureCommand extends Command {
   void run() {
     String? featureName = argResults?['name'] as String?;
     String state = argResults?['state'] as String? ?? 'bloc';
-    
+
     if (featureName == null || featureName.isEmpty) {
       print('🚀 Entering Interactive Wizard...');
       stdout.write('👉 Enter feature name: ');
       featureName = stdin.readLineSync();
-      
+
       if (featureName == null || featureName.isEmpty) {
         print('❌ Feature name cannot be empty.');
         return;
       }
-      
-      stdout.write('👉 Choose state manager (1: bloc, 2: riverpod, 3: getx) [1]: ');
+
+      stdout.write(
+          '👉 Choose state manager (1: bloc, 2: riverpod, 3: getx) [1]: ');
       final stateChoice = stdin.readLineSync();
-      if (stateChoice == '2') state = 'riverpod';
-      else if (stateChoice == '3') state = 'getx';
-      else state = 'bloc';
+      if (stateChoice == '2')
+        state = 'riverpod';
+      else if (stateChoice == '3')
+        state = 'getx';
+      else
+        state = 'bloc';
     }
 
     print('Scaffolding feature: $featureName with $state...');
