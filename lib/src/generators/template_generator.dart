@@ -91,4 +91,55 @@ class ${pascalCase}Bloc extends Bloc<${pascalCase}Event, ${pascalCase}State> {
 }
 ''';
   }
+
+  static String getRiverpodTemplate(String featureName) {
+    final pascalCase = featureName[0].toUpperCase() + featureName.substring(1);
+    return '''
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+final ${featureName}Provider = StateNotifierProvider<${pascalCase}Notifier, ${pascalCase}State>((ref) {
+  return ${pascalCase}Notifier();
+});
+
+class ${pascalCase}State {
+  final bool isLoading;
+  ${pascalCase}State({this.isLoading = false});
+}
+
+class ${pascalCase}Notifier extends StateNotifier<${pascalCase}State> {
+  ${pascalCase}Notifier() : super(${pascalCase}State());
+  
+  // TODO: implement logic
+}
+''';
+  }
+
+  static String getGetXTemplate(String featureName) {
+    final pascalCase = featureName[0].toUpperCase() + featureName.substring(1);
+    return '''
+import 'package:get/get.dart';
+
+class ${pascalCase}Controller extends GetxController {
+  final isLoading = false.obs;
+
+  // TODO: implement logic
+}
+''';
+  }
+
+  static String getUnitTestTemplate(String featureName) {
+    final pascalCase = featureName[0].toUpperCase() + featureName.substring(1);
+    return '''
+import 'package:flutter_test/flutter_test.dart';
+
+void main() {
+  group('${pascalCase}Feature Tests', () {
+    test('should initialize properly', () {
+      // TODO: implement test
+      expect(true, isTrue);
+    });
+  });
+}
+''';
+  }
 }
