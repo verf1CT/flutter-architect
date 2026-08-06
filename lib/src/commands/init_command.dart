@@ -15,9 +15,8 @@ class InitCommand extends Command {
     print('🚀 Entering Interactive Wizard...');
     stdout.write('👉 Which HTTP client do you prefer? (1: http, 2: dio) [1]: ');
     final httpChoice = stdin.readLineSync();
-    final useDio = httpChoice == '2';
-
-    print('Initializing Clean Architecture...');
+    
+    print('Initializing Clean Architecture using ${httpChoice == '2' ? 'dio' : 'http'}...');
 
     final coreDirs = [
       'lib/core/error',

@@ -1,6 +1,6 @@
 name: clean_architect_cli
 description: A CLI tool for scaffolding Clean Architecture in Flutter projects.
-version: 1.0.0
+version: 1.0.1
 homepage: https://github.com/verf1CT/flutter-architect
 repository: https://github.com/verf1CT/flutter-architect
 
