@@ -9,7 +9,7 @@ Stop creating `data`, `domain`, and `presentation` folders manually. `flutter-ar
 
 ## 🚀 Installation
 
-Activate the CLI globally via Dart:
+Activate the package globally:
 
 ```bash
 dart pub global activate flutter_architect

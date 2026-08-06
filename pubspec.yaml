@@ -2,6 +2,7 @@ name: flutter_architect
 description: A CLI tool for scaffolding Clean Architecture in Flutter projects.
 version: 1.0.0
 homepage: https://github.com/verf1CT/flutter-architect
+repository: https://github.com/verf1CT/flutter-architect
 
 environment:
   sdk: '>=3.0.0 <4.0.0'
