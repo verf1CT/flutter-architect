@@ -1,5 +1,4 @@
 import 'package:args/command_runner.dart';
-import 'package:path/path.dart' as p;
 import '../generators/folder_generator.dart';
 import '../generators/template_generator.dart';
 

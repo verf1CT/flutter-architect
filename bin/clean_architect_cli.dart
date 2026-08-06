@@ -1,6 +1,6 @@
 import 'package:args/command_runner.dart';
-import 'package:flutter_architect/src/commands/init_command.dart';
-import 'package:flutter_architect/src/commands/feature_command.dart';
+import 'package:clean_architect_cli/src/commands/init_command.dart';
+import 'package:clean_architect_cli/src/commands/feature_command.dart';
 import 'dart:io';
 
 void main(List<String> arguments) {
